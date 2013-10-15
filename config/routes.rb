@@ -1,7 +1,24 @@
 Foodexc::Application.routes.draw do
-  get "pages/help"
+  match '/help', to: 'pages#help'
+  match '/about', to: 'pages#about'
+  match '/contact', to: 'pages#contact'
+  match '/home', to: 'pages#home'
+  match '/blog', to: 'pages#blog'
+  match '/terms', to: 'pages#terms'
+  match '/privacy', to: 'pages#privacy'  
+  match '/signup', to: 'pages#signup'
+  match '/news', to: 'pages#news'   
+
+  get "pages/help" 
   get "pages/about"
+  get "pages/contact"
   get "pages/home"
+  get "pages/blog"
+  get "pages/terms"
+  get "pages/privacy"
+  get "pages/signup"
+  get "pages/news" 
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +69,7 @@ Foodexc::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'pages#home'
 
   # See how all your routes lay out with "rake routes"
 
