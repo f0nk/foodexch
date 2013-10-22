@@ -1,5 +1,10 @@
 Foodexc::Application.routes.draw do
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   root :to => 'pages#home'
 
@@ -10,7 +15,6 @@ Foodexc::Application.routes.draw do
   match '/blog', to: 'pages#blog'
   match '/terms', to: 'pages#terms'
   match '/privacy', to: 'pages#privacy'  
-  match '/signup', to: 'users#new'
   match '/news', to: 'pages#news'   
 
   # get "pages/home"
