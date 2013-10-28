@@ -4,7 +4,7 @@ class UsersController < ApplicationController
    before_filter :correct_user,   only: [:edit, :update]
    before_filter :admin_user,     only: :destroy
 
-
+#//= require bootstrap
  
   def new
   	@user = User.new
@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @listings = @user.listings.paginate(page: params[:page])
+
   end
 
   def create
@@ -53,13 +55,6 @@ class UsersController < ApplicationController
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
-
-   def signed_in_user
-        unless signed_in?
-          store_location
-          redirect_to signin_url, notice: "Please sign in."
-        end
-      end
 
       def correct_user
         @user = User.find(params[:id])

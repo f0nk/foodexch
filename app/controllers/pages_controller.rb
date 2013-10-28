@@ -6,7 +6,8 @@ class PagesController < ApplicationController
   def about
   end
 
-  def home  	
+  def home
+    @listing = current_user.listings.build if signed_in?
   end
 
   def contact 	

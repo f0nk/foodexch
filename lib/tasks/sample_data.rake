@@ -1,7 +1,13 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+    make_users
+    make_listings
+  end
+end
 
+
+def make_users
     admin = User.create!(name: "Admin",
                              email: "admin@food.com",
                              password: "password",
@@ -18,7 +24,23 @@ namespace :db do
       User.create!(name: name,
                    email: email,
                    password: password,
-                   password_confirmation: password)
-    end
+                   password_confirmation: password) 
+  end
+end
+
+def make_listings
+  users = User.all(limit: 6)
+  5.times do
+    title = Faker::Lorem.sentence(2)
+    country = "France"
+    city = "Cannes"
+    region = "Provence"
+    description = Faker::Lorem.sentence(2) 
+    background = Faker::Lorem.sentence(2)
+    imageurl = "https://si0.twimg.com/profile_images/2730930329/fa574a41aa80b8c5333e21086a1d5f4b.jpeg" 
+
+    users.each { |user| 
+      user.listings.create!(title: title, country: country, city: city, region: region,description: description, background: background, imageurl: imageurl) 
+      }
   end
 end
