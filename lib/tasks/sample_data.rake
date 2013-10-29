@@ -29,8 +29,8 @@ def make_users
 end
 
 def make_listings
-  users = User.all(limit: 6)
-  5.times do
+  users = User.all(limit: 20)
+  35.times do
     title = Faker::Lorem.sentence(2)
     country = "France"
     city = "Cannes"
