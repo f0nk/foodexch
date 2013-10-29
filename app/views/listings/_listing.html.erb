@@ -1,11 +1,16 @@
 <li>
+  <span class="content">Username: <%= listing.user.name %></span>
   <span class="content">Title: <%= listing.title %></span>
   <span class="content">Country: <%= listing.country %></span>
   <span class="content">Region: <%= listing.region %></span>
   <span class="content">City: <%= listing.city %></span>
   <span class="content">Description: <%= listing.description %></span>
   <span class="content">Background: <%= listing.background %></span>
-
+  <% if current_user?(listing.user) %>
+    <%= link_to "delete", listing, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: listing.title %>
+  <% end %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(listing.created_at) %> ago.
   </span>

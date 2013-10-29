@@ -1,7 +1,13 @@
 <%= form_for(@listing) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :title, placeholder: "Compose new listing..." %>
+    <%= f.label :title, "Input your Food Listing below..." %>
+    <%= f.text_field :title, placeholder: "Name of the food..." %>
+    <%= f.text_field :country, placeholder: "Country where the food originated from..." %>
+    <%= f.text_field :region, placeholder: "Region where the food originated from..." %>
+    <%= f.text_field :city, placeholder: "City where the food originated from..." %>
+    <%= f.text_field :description, placeholder: "Description of the food..." %>
+    <%= f.text_field :background, placeholder: "Background of the food..." %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

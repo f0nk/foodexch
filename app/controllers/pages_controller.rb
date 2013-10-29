@@ -7,7 +7,11 @@ class PagesController < ApplicationController
   end
 
   def home
-    @listing = current_user.listings.build if signed_in?
+    if signed_in?
+      @listing  = current_user.listings.build
+     # @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_items = Listing.paginate(page: params[:page])   
+    end
   end
 
   def contact 	
@@ -20,9 +24,6 @@ class PagesController < ApplicationController
   end
 
   def terms  	
-  end
-
-  def home  	
   end
   
   def signup  	
