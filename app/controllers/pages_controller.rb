@@ -9,8 +9,8 @@ class PagesController < ApplicationController
   def home
     if signed_in?
       @listing  = current_user.listings.build
-     # @feed_items = current_user.feed.paginate(page: params[:page])
-      @feed_items = Listing.paginate(page: params[:page])   
+      @feed_items = current_user.feed.paginate(page: params[:page])
+     # @feed_items = Listing.paginate(page: params[:page])   
     end
   end
 

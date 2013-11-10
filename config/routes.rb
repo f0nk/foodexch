@@ -1,8 +1,14 @@
 Foodexc::Application.routes.draw do
   #http://ruby.railstutorial.org/chapters/sign-up?version=3.2#table-RESTful_users
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :listings, only: [:create, :destroy, :index]
+  resources :relationships, only: [:create, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
